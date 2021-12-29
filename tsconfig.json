@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "es2020", // as per https://node.green/ v14 fully supports es2020
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "outDir": "./build",
+    "pretty": true,
+    "noEmitOnError": false,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "newLine": "lf",
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "lib": [
+      "esnext",
+    ],
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths",
+      }
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/typings"
+    ],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/"
+  ]
+}
