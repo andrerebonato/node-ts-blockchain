@@ -1,8 +1,11 @@
 import Block from './block';
 import Transaction from './transaction';
+import ec from './keygen';
 
 export default class Chain {
     static MINNING_DIFFICULTY = 2;
+    static PRIVATE_ADDRESS = ec.keyFromPrivate('5d4c42907dec40c91bab3480c39032e90049f1a44f3e18c3e07c23e3273995cf');
+    static PUBLIC_ADDRESS = Chain.PRIVATE_ADDRESS.getPublic('hex');
 
     blocks: Block[];
     pendingTransactions: Transaction[];
@@ -83,8 +86,10 @@ export default class Chain {
         return balance;
     }
 
-    minePendingTransactions(miningRewardAddress: string) {
-        const rewardTransaction = new Transaction('', miningRewardAddress, this.miningReward);
+    minePendingTransaction(miningRewardAddress: string) {
+        const rewardTransaction = new Transaction(Chain.PUBLIC_ADDRESS, miningRewardAddress, this.miningReward);
+
+        rewardTransaction.sign(Chain.PRIVATE_ADDRESS);
 
         this.pendingTransactions.push(rewardTransaction);
 
@@ -98,6 +103,7 @@ export default class Chain {
     }
 
     getTotalChainLength(): number {
+        
         return this.blocks.length;
     }
 

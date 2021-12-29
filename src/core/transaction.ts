@@ -27,8 +27,6 @@ export default class Transaction {
 
         const sign = signingKey.sign(transactionHash, 'base64');
 
-        console.log('Sign: ', sign.toDER('hex'));
-
         this.signature = sign.toDER('hex');
     }
 

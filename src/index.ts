@@ -8,14 +8,14 @@ const myWalletAddress = myKey.getPublic('hex');
 
 const chain = new Chain();
 
-chain.minePendingTransactions(myWalletAddress);
+chain.minePendingTransaction(
+    myWalletAddress
+);
 
 const tx1 = new Transaction(myWalletAddress, 'public key goes here', 1);
 tx1.sign(myKey);
 
 chain.addTransaction(tx1);
-
-chain.minePendingTransactions(myWalletAddress);
 
 console.log('Rebonato balance', chain.getBalanceOfAddress(myWalletAddress));
 
