@@ -97,7 +97,7 @@ export default class Chain {
 
         block.mine(Chain.MINNING_DIFFICULTY);
 
-        this.blocks.push(block);
+        this.addBlock(block);
 
         this.pendingTransactions = [];
     }
