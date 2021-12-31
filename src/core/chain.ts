@@ -1,11 +1,13 @@
 import Block from './block';
 import Transaction from './transaction';
-import ec from './keygen';
+import keyAddress from '../secrets/keyaddress';
+import miningDificulty from '../secrets/mining';
 
 export default class Chain {
-    static MINNING_DIFFICULTY = 2;
-    static PRIVATE_ADDRESS = ec.keyFromPrivate('5d4c42907dec40c91bab3480c39032e90049f1a44f3e18c3e07c23e3273995cf');
-    static PUBLIC_ADDRESS = Chain.PRIVATE_ADDRESS.getPublic('hex');
+    static MINING_DIFICULTY = miningDificulty.lastDificulty;
+    static PRIVATE_ADDRESS = keyAddress.PRIVATE_ADDRESS;
+    static PUBLIC_ADDRESS = keyAddress.PUBLIC_ADDRESS;
+
 
     blocks: Block[];
     pendingTransactions: Transaction[];
@@ -39,7 +41,7 @@ export default class Chain {
         block.previousHash = this.getLatestBlock().hash;
 
         // And then, it's necessary to calcule the new block hash.
-        block.mine(Chain.MINNING_DIFFICULTY);
+        block.mine(Chain.MINING_DIFICULTY);
         this.blocks.push(block);
     }
 
@@ -95,7 +97,7 @@ export default class Chain {
 
         let block = new Block(Date.now().toString(), this.pendingTransactions, this.getLatestBlock().hash);
 
-        block.mine(Chain.MINNING_DIFFICULTY);
+        block.mine(Chain.MINING_DIFICULTY);
 
         this.addBlock(block);
 
