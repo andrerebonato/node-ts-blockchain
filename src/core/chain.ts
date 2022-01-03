@@ -1,12 +1,12 @@
 import Block from './block';
 import Transaction from './transaction';
-import keyAddress from '../secrets/keyaddress';
-import miningDificulty from '../secrets/mining';
+import KeyAddress from '../secrets/keyaddress';
+import MiningDificulty from '../secrets/mining';
 
 export default class Chain {
-    static MINING_DIFICULTY = miningDificulty.lastDificulty;
-    static PRIVATE_ADDRESS = keyAddress.PRIVATE_ADDRESS;
-    static PUBLIC_ADDRESS = keyAddress.PUBLIC_ADDRESS;
+    static MINING_DIFICULTY = MiningDificulty.lastDificulty;
+    static PRIVATE_ADDRESS = KeyAddress.PRIVATE_ADDRESS;
+    static PUBLIC_ADDRESS = KeyAddress.PUBLIC_ADDRESS;
 
 
     blocks: Block[];
