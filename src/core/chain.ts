@@ -1,7 +1,7 @@
 import Block from './block';
 import Transaction from './transaction';
-import KeyAddress from '../secrets/keyaddress';
-import MiningDificulty from '../secrets/mining';
+import KeyAddress from '../crypto/keyaddress';
+import MiningDificulty from '~/crypto/mining';
 
 export default class Chain {
     static MINING_DIFICULTY = MiningDificulty.lastDificulty;
@@ -20,7 +20,7 @@ export default class Chain {
     }
 
     /*
-        This method generates the "GENESIS" block, that means is the first block on the chain.    
+        This method generates the "GENESIS" block, that means is the first block on the chain.
     */
     generateGenesisBlock(): Block {
         return new Block(Date.now().toString(), [], '0');
@@ -62,11 +62,11 @@ export default class Chain {
         if (transaction.amount <= 0) {
             throw new Error('AMOUNT_MUST_BE_GREATER_THAN_0');
         }
-          
+
         if (this.getBalanceOfAddress(transaction.fromAddress) < transaction.amount) {
             throw new Error('NOT_ENOUGH_BALANCE');
         }
-        
+
         this.pendingTransactions.push(transaction);
     }
 
@@ -105,7 +105,7 @@ export default class Chain {
     }
 
     getTotalChainLength(): number {
-        
+
         return this.blocks.length;
     }
 
