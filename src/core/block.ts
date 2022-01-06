@@ -27,7 +27,7 @@ export default class Block {
     }
 
     mine(difficulty: number) {
-        console.log(`Minning block ${this.hash} with difficulty: ${difficulty}`);
+        console.log(`Mining block ${this.hash} with difficulty: ${difficulty}`);
 
         while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join('0')) {
             this.nonce++;
